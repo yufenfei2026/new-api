@@ -19,7 +19,7 @@ services:
     image: calciumion/new-api:latest
     container_name: new-api
     restart: always
-    command: --log-dir /home/work/new_api/data
+    command: --log-dir /home/work/new_api/logs
     ports:
       - "3000:3000"
     volumes:
