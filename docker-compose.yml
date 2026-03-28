@@ -82,6 +82,7 @@ services:
       MYSQL_DATABASE: new-api
     volumes:
       - /home/work/mysql/data:/var/lib/mysql
+      - /home/work/mysql/logs:/var/log/mysql
     networks:
       - new-api-network
     ports:
