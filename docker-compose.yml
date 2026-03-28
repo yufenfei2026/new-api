@@ -26,8 +26,8 @@ services:
       - ./data:/home/work/new_api/data
       - ./logs:/home/work/new_api/logs
     environment:
-      - SQL_DSN=postgresql://root:newApi234@postgres:5432/new-api # ⚠️ IMPORTANT: Change the password in production!
-#      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
+#      - SQL_DSN=postgresql://root:newApi234@postgres:5432/new-api # ⚠️ IMPORTANT: Change the password in production!
+      - SQL_DSN=root:newApi234@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
       - REDIS_CONN_STRING=redis://redis
       - TZ=Asia/Shanghai
       - ERROR_LOG_ENABLED=true # 是否启用错误日志记录 (Whether to enable error log recording)
@@ -41,8 +41,8 @@ services:
 
     depends_on:
       - redis
-      - postgres
-#      - mysql  # Uncomment if using MySQL
+#      - postgres
+      - mysql  # Uncomment if using MySQL
     networks:
       - new-api-network
     healthcheck:
@@ -58,38 +58,38 @@ services:
     networks:
       - new-api-network
 
-  postgres:
-    image: postgres:15
-    container_name: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: newApi234  # ⚠️ IMPORTANT: Change this password in production!
-      POSTGRES_DB: new-api
-    volumes:
-      - pg_data:/home/work/postgresql/data
-    networks:
-      - new-api-network
+#  postgres:
+#    image: postgres:15
+#    container_name: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: newApi234  # ⚠️ IMPORTANT: Change this password in production!
+#      POSTGRES_DB: new-api
+#    volumes:
+#      - pg_data:/home/work/postgresql/data
+#    networks:
+##      - new-api-network
 #    ports:
 #      - "5432:5432"  # Uncomment if you need to access PostgreSQL from outside Docker
 
-#  mysql:
-#    image: mysql:8.2
-#    container_name: mysql
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
-#      MYSQL_DATABASE: new-api
-#    volumes:
-#      - mysql_data:/var/lib/mysql
-#    networks:
-#      - new-api-network
-#    ports:
-#      - "3306:3306"  # Uncomment if you need to access MySQL from outside Docker
+  mysql:
+    image: mysql:8.2
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: newApi234  # ⚠️ IMPORTANT: Change this password in production!
+      MYSQL_DATABASE: new-api
+    volumes:
+      - mysql_data:/home/work/mysql/data
+    networks:
+      - new-api-network
+    ports:
+      - "3306:3306"  # Uncomment if you need to access MySQL from outside Docker
 
 volumes:
-  pg_data:
-#  mysql_data:
+#  pg_data:
+  mysql_data:
 
 networks:
   new-api-network:
