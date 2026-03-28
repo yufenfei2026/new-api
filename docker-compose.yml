@@ -81,7 +81,7 @@ services:
       MYSQL_ROOT_PASSWORD: newApi234  # ⚠️ IMPORTANT: Change this password in production!
       MYSQL_DATABASE: new-api
     volumes:
-      - mysql_data:/home/work/mysql/data
+      - /home/work/mysql/data:/var/lib/mysql
     networks:
       - new-api-network
     ports:
