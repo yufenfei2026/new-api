@@ -19,12 +19,12 @@ services:
     image: calciumion/new-api:latest
     container_name: new-api
     restart: always
-    command: --log-dir /home/work/new_api/app/logs
+    command: --log-dir /home/work/new_api/logs
     ports:
       - "3000:3000"
     volumes:
       - ./data:/home/work/new_api/data
-      - ./logs:/home/work/new_api/app/logs
+      - ./logs:/home/work/new_api/logs
     environment:
       - SQL_DSN=postgresql://root:newApi234@postgres:5432/new-api # ⚠️ IMPORTANT: Change the password in production!
 #      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
